@@ -23,7 +23,7 @@
 	<description>Spring CDI bridge to bridge the two technologies</description>
 
 	<properties>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.version>3.1.0.RELEASE</spring.version>
 		<aspectj.version>1.6.11.M2</aspectj.version>
 	</properties>
 
@@ -41,13 +41,12 @@
 	</repositories>
 
 	<dependencies>
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>1.0-SP1</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
+        <!--workaround for https://issues.apache.org/jira/browse/OWB-813-->
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jcdi_1.0_spec</artifactId>
+            <version>1.0</version>
+        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

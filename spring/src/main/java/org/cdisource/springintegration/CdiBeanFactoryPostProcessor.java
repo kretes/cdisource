@@ -38,13 +38,14 @@ public class CdiBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 						.addPropertyValue("beanManager", beanManagerLocationUtil.beanManager())
 						.setLazyInit(true);
 			String name = generateName(bean);
-			factory.registerBeanDefinition(name, definition.getBeanDefinition());
+            System.out.println("registering bean under name " + name);
+            factory.registerBeanDefinition(name, definition.getBeanDefinition());
 		}
 	}
 
 	private String generateName(Bean<?> bean) {
 		Named named = (Named) bean.getBeanClass().getAnnotation(Named.class);
-		String name = named != null ? named.value() : generateNameBasedOnClassName(bean);
+		String name = (named != null && named.value() !=null && named.value().isEmpty() == false) ? named.value() : generateNameBasedOnClassName(bean);
 		return name;
 	}
 
